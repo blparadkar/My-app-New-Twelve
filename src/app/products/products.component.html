@@ -1,0 +1,91 @@
+<p>products works!</p>
+<div [ngClass]="{ changebg: search != '' }">
+  Search :
+
+  <input type="text" [(ngModel)]="search" />
+  <div *ngIf="search != ''">you searched for {{ search }}</div>
+</div>
+<br />
+<div class="cntainer">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let item of products">
+      <div [ngStyle]="{ backgroundColor: item.id % 2 == 0 ? 'red' : 'green' }">
+        {{ item.id }}
+      </div>
+      <img [src]="item.image" alt="" width="200px" height="200px" />
+      <div>{{ item.title }}</div>
+      <div>{{ item.description }}</div>
+      <div
+        [ngStyle]="{ color: item.category === 'jewelery' ? 'green' : 'red' }"
+      >
+        {{ item.category }}
+      </div>
+
+      <div class="productRate">
+        <div>$ {{ item.price }}</div>
+        <div>Rating :{{ item.rating?.rate }}</div>
+        <div>Total count :{{ item.rating?.count }}</div>
+      </div>
+      <button class="btn btn-primary me-3">Add to Cart</button>
+      <button
+        class="btn btn-warning"
+        *ngIf="item.category != 'jewelery'; else elseblock"
+      >
+        buy now
+      </button>
+      <ng-template #elseblock>
+        <button class="btn btn-info">Notify me</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let i of data">
+  <div [ngStyle]="{ color: i % 2 == 0 ? 'red' : 'green' }">
+    number is : {{ i }}
+  </div>
+</div>
+<div *ngFor="let ii of data2">
+  <div *ngIf="ii % 2 == 1">number is : {{ ii }}</div>
+</div>
+
+<div [hidden]="displaymsg">
+  This website use cookies
+  <button (click)="closeNotification()">X</button>
+</div>
+<br />
+<div>
+  This website use cookies
+  <button (click)="closeNotification()">close</button>
+</div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col" *ngFor="let item of products">
+        <div class="card shadow-sm m-auto">
+          <p class="card-text">
+            {{ item.id }}
+          </p>
+          <img [src]="item.image" alt="" width="200px" height="200px" />
+          <div class="card-body">
+            <div>{{ item.title }}</div>
+            <div>{{ item.description }}</div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <div class="productRate">
+                  <div>$ {{ item.price }}</div>
+                  <div>Rating :{{ item.rating?.rate }}</div>
+                </div>
+              </div>
+              <small class="text-muted"
+                >Total count :{{ item.rating?.count }}</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

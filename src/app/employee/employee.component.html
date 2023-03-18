@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2>List of Employees</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <th scope="row">{{ emp.id }}</th>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div *ngFor="let i of array1">{{ i.id }} {{ i.name }}</div> -->
